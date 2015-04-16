@@ -10,15 +10,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.RemoteException;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -146,77 +141,20 @@ public class MainActivity extends ActionBarActivity {
         canvas.drawCircle( planPieceQuatre.getPositionBeaconD().x*2
                 , planPieceQuatre.getPositionBeaconD().y*2, 50, pointBeacon);
 
-        /*// affiche les Arcs de Cercles
-        Paint cercleA = new Paint();
-        cercleA.setColor(Color.RED);
-        cercleA.setStyle(Paint.Style.STROKE);
-        cercleA.setStrokeWidth(10);
-        canvas.drawCircle(planPieceQuatre.getPositionBeaconA().x*2,
-                planPieceQuatre.getPositionBeaconA().y*2,
-                (float) quadriLateration.getDistanceBeaconA()*2,
-                cercleA);
-        canvas.drawCircle(planPieceQuatre.getPositionBeaconB().x*2,
-                planPieceQuatre.getPositionBeaconB().y*2,
-                (float) quadriLateration.getDistanceBeaconB()*2,
-                cercleA);
-        canvas.drawCircle(planPieceQuatre.getPositionBeaconC().x*2,
-                planPieceQuatre.getPositionBeaconC().y*2,
-                (float) quadriLateration.getDistanceBeaconC()*2,
-                cercleA);
-        canvas.drawCircle(planPieceQuatre.getPositionBeaconD().x*2,
-                planPieceQuatre.getPositionBeaconD().y*2,
-                (float) quadriLateration.getDistanceBeaconD()*2,
-                cercleA);*/
-
         // afficher les points
         if (position != null) {
-            /*// Desiner la zone ou l'on se trouve
-            Paint rectangleCoin = new Paint();
-            rectangleCoin.setColor(Color.RED);
-            rectangleCoin.setStyle(Paint.Style.FILL);
-            rectangleCoin.setStrokeWidth(10);
-
-            if (coin == PlanPieceQuatre.Coin.COIN_HAUT_GAUCHE) {
-                canvas.drawRect(planPieceQuatre.getPositionBeaconA().x *2
-                        , planPieceQuatre.getPositionBeaconA().y *2
-                        , planPieceQuatre.getCentreDeLaPiece().x *2
-                        , planPieceQuatre.getCentreDeLaPiece().y *2
-                        , rectangleCoin);
-            }
-            if (coin == PlanPieceQuatre.Coin.COIN_HAUT_DROITE) {
-                canvas.drawRect(planPieceQuatre.getCentreDeLaPiece().x *2
-                        , planPieceQuatre.getPositionBeaconA().y *2
-                        , planPieceQuatre.getPositionBeaconD().x *2
-                        , planPieceQuatre.getCentreDeLaPiece().y *2
-                        , rectangleCoin);
-            }
-            if (coin == PlanPieceQuatre.Coin.COIN_BAS_GAUCHE) {
-                canvas.drawRect(planPieceQuatre.getPositionBeaconA().x *2
-                        , planPieceQuatre.getCentreDeLaPiece().y *2
-                        , planPieceQuatre.getCentreDeLaPiece().x *2
-                        , planPieceQuatre.getPositionBeaconD().y *2
-                        , rectangleCoin);
-            }
-            if (coin == PlanPieceQuatre.Coin.COIN_BAS_DROITE) {
-                canvas.drawRect(planPieceQuatre.getCentreDeLaPiece().x *2
-                        , planPieceQuatre.getCentreDeLaPiece().y *2
-                        , planPieceQuatre.getPositionBeaconD().x *2
-                        , planPieceQuatre.getPositionBeaconD().y *2
-                        , rectangleCoin);
-            }*/
-
             Paint pointBleu = new Paint();
             pointBleu.setColor(Color.GRAY);
             pointBleu.setStrokeWidth(10);
-
-            canvas.drawRect(position.x*2,position.y*2,(position.x+100)*2,(position.y+95)*2,pointBleu);
-            //canvas.drawCircle(listePosition.get(listePosition.size()-1).x*2, listePosition.get(listePosition.size()-1).y*2, 200, pointBleu);
+            //TODO *2
+            canvas.drawRect(position.x,position.y,(position.x+200),(position.y+192),pointBleu);
         }
     }
 
     private Point quelZone(Point point) {
-        int x = (point.x/100)*100;
-        int y = (point.y/96)*96;
+        //TODO fait
+        int x = (point.x/200)*200;
+        int y = (point.y/192)*192;
         return new Point(x,y);
     }
 
@@ -374,79 +312,10 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    private void dessinerCercle() {
-        drawingImageView = (ImageView) findViewById(R.id.img);
-        drawingImageView.setImageResource(R.drawable.metting_2);
-        BitmapDrawable drawable = (BitmapDrawable) drawingImageView.getDrawable();
-        Bitmap bitmap = drawable.getBitmap();
-        bitmap = Bitmap.createScaledBitmap(bitmap, 500 *2, 477*2, true);
-        canvas = new Canvas(bitmap);
-        drawingImageView.setImageBitmap(bitmap);
-
-        // affiche les Ibeacons
-        Paint pointBeacon = new Paint();
-        pointBeacon.setColor(Color.GREEN);
-        canvas.drawCircle( planPieceQuatre.getPositionBeaconA().x*2
-                , planPieceQuatre.getPositionBeaconA().y*2 , 50, pointBeacon);
-        canvas.drawCircle( planPieceQuatre.getPositionBeaconB().x*2
-                , planPieceQuatre.getPositionBeaconB().y*2 , 50, pointBeacon);
-        canvas.drawCircle( planPieceQuatre.getPositionBeaconC().x*2
-                , planPieceQuatre.getPositionBeaconC().y*2, 50, pointBeacon);
-        canvas.drawCircle( planPieceQuatre.getPositionBeaconD().x*2
-                , planPieceQuatre.getPositionBeaconD().y*2 , 50, pointBeacon);
-        // affiche les Cercles
-        Paint cercleA = new Paint();
-        cercleA.setColor(Color.RED);
-        cercleA.setStyle(Paint.Style.STROKE);
-        cercleA.setStrokeWidth(10);
-        canvas.drawCircle(planPieceQuatre.getPositionBeaconA().x*2,
-                planPieceQuatre.getPositionBeaconA().y*2,
-                (float) quadriLateration.getDistanceBeaconA()*2,
-                cercleA);
-        canvas.drawCircle(planPieceQuatre.getPositionBeaconB().x*2,
-                planPieceQuatre.getPositionBeaconB().y*2,
-                (float) quadriLateration.getDistanceBeaconB()*2,
-                cercleA);
-        canvas.drawCircle(planPieceQuatre.getPositionBeaconC().x*2,
-                planPieceQuatre.getPositionBeaconC().y*2,
-                (float) quadriLateration.getDistanceBeaconC()*2,
-                cercleA);
-        canvas.drawCircle(planPieceQuatre.getPositionBeaconD().x*2,
-                planPieceQuatre.getPositionBeaconD().y*2,
-                (float) quadriLateration.getDistanceBeaconD()*2,
-                cercleA);
-
-        // afficher les points
-        if (listePosition != null && !listePosition.isEmpty()) {
-
-            if (listePosition.size() == 1) {
-                Paint pointBleu = new Paint();
-                pointBleu.setColor(Color.RED);
-                canvas.drawCircle(listePosition.get(listePosition.size() - 1).x * 2,
-                        listePosition.get(listePosition.size() - 1).y * 2,
-                        200, pointBleu);
-            } else {
-                Point old, nouv;
-                old = listePosition.get(listePosition.size() - 2);
-                nouv = listePosition.get(listePosition.size() - 1);
-                if (nouv.x >= old.x-50 && nouv.x <= old.x+50
-                        && nouv.y >= old.y-50 && nouv.y <= old.y+50) {
-                    Paint pointBleu = new Paint();
-                    pointBleu.setColor(Color.RED);
-                    canvas.drawCircle(listePosition.get(listePosition.size() - 1).x * 2,
-                            listePosition.get(listePosition.size() - 1).y * 2,
-                            200, pointBleu);
-                }
-            }
-        }
-    }
 
     Timer timer;
     TimerTask timerTask;
     final Handler handler = new Handler();
-
-
-
 
     private void calculerPoint() {
 
@@ -478,137 +347,6 @@ public class MainActivity extends ActionBarActivity {
             coin.setText("X = null Y = null\n");
             textMessage += "X = null Y = null\n\n";
         }
-        /*//Point pGsm = trilateration.getPositionGsm();
-
-        *//*if (distancesA.size() > 0 && distancesB.size() > 0 && distancesC.size() > 0 && distancesD.size() > 0) {
-            optimiseDistance(distancesA);
-            optimiseDistance(distancesB);
-            optimiseDistance(distancesC);
-            optimiseDistance(distancesD);
-
-            distancesA.clear();
-            distancesA.clear();
-            distancesA.clear();
-            distancesA.clear();
-        }*//*
-
-        Point pGsm = quadriLateration.getPositionGsm();
-
-        if (pGsm != null) {
-            // if faut laisser car pas mal de points ce retrouventhors de la piece
-            if (pGsm.x < planPieceQuatre.getPositionBeaconA().x)
-                pGsm.x = Math.abs(pGsm.x);
-            if (pGsm.y < planPieceQuatre.getPositionBeaconA().y)
-                pGsm.y = Math.abs(pGsm.y);
-            if (pGsm.x > planPieceQuatre.getPositionBeaconD().x)
-                pGsm.x = planPieceQuatre.getPositionBeaconD().x - (pGsm.x - planPieceQuatre.getPositionBeaconD().x);
-            if (pGsm.y > planPieceQuatre.getPositionBeaconD().y)
-                pGsm.y = planPieceQuatre.getPositionBeaconD().y - (pGsm.y - planPieceQuatre.getPositionBeaconD().y);
-
-            coin.setText("X " + pGsm.x + " Y " + pGsm.y + "\n");
-            listePosition.add(pGsm);
-            switch (planPieceQuatre.getPositionCoin(pGsm)) {
-                case COIN_BAS_DROITE:
-                    afficherPlan(pGsm, PlanPieceQuatre.Coin.COIN_BAS_DROITE);
-                    break;
-                case COIN_BAS_GAUCHE:
-                    afficherPlan(pGsm, PlanPieceQuatre.Coin.COIN_BAS_GAUCHE);
-                    break;
-                case COIN_HAUT_DROITE:
-                    afficherPlan(pGsm, PlanPieceQuatre.Coin.COIN_HAUT_DROITE);
-                    break;
-                case COIN_HAUT_GAUCHE:
-                    afficherPlan(pGsm, PlanPieceQuatre.Coin.COIN_HAUT_GAUCHE);
-                    break;
-            }
-            Log.d(TAG_DEBUG, "X " + pGsm.x + " Y " + pGsm.y);
-        } else {
-            //afficherPlan(new Point(330,150), PlanPieceQuatre.Coin.COIN_HAUT_GAUCHE);
-            coin.setText("X = null Y = null\n");
-            textMessage += "X = null Y = null\n\n";
-        }*/
-    }
-
-    private void optimiseDistance(ArrayList<Double> d) {
-        // faire une moyenne majoré des différente distance
-        int paliers[] = {0,0,0,0,0,0,0};
-        for (double distA : d) {
-            if (distA > 0 && distA <= 100) {
-                paliers[0]++;
-            }
-            if (distA > 100 && distA <= 200) {
-                paliers[1]++;
-            }
-            if (distA > 200 && distA <= 300) {
-                paliers[2]++;
-            }
-            if (distA > 300 && distA <= 400) {
-                paliers[3]++;
-            }
-            if (distA > 400 && distA <= 500) {
-                paliers[4]++;
-            }
-            if (distA > 500 && distA <= 600) {
-                paliers[5]++;
-            }
-            if (distA > 600) {
-                paliers[6]++;
-            }
-        }
-        int indiceMAx = 0;
-        int max = paliers[indiceMAx];
-
-        for (int i = 1; i <= paliers.length - 1; i++) {
-            if (max < paliers[i]) {
-                max = paliers[i];
-                indiceMAx = i;
-            }
-        }
-
-        if (d == distancesA) {
-            switch (indiceMAx) {
-                case 0: quadriLateration.setDistanceBeaconA(50); break;
-                case 1: quadriLateration.setDistanceBeaconA(150); break;
-                case 2: quadriLateration.setDistanceBeaconA(250); break;
-                case 3: quadriLateration.setDistanceBeaconA(350); break;
-                case 4: quadriLateration.setDistanceBeaconA(450); break;
-                case 5: quadriLateration.setDistanceBeaconA(550); break;
-                case 6: quadriLateration.setDistanceBeaconA(650); break;
-            }
-        }
-        if (d == distancesB) {
-            switch (indiceMAx) {
-                case 0: quadriLateration.setDistanceBeaconB(50);
-                case 1: quadriLateration.setDistanceBeaconB(150);
-                case 2: quadriLateration.setDistanceBeaconB(250);
-                case 3: quadriLateration.setDistanceBeaconB(350);
-                case 4: quadriLateration.setDistanceBeaconB(450);
-                case 5: quadriLateration.setDistanceBeaconB(550);
-                case 6: quadriLateration.setDistanceBeaconB(650);
-            }
-        }
-        if (d == distancesC) {
-            switch (indiceMAx) {
-                case 0: quadriLateration.setDistanceBeaconC(50);
-                case 1: quadriLateration.setDistanceBeaconC(150);
-                case 2: quadriLateration.setDistanceBeaconC(250);
-                case 3: quadriLateration.setDistanceBeaconC(350);
-                case 4: quadriLateration.setDistanceBeaconC(450);
-                case 5: quadriLateration.setDistanceBeaconC(550);
-                case 6: quadriLateration.setDistanceBeaconC(650);
-            }
-        }
-        if (d == distancesD) {
-            switch (indiceMAx) {
-                case 0: quadriLateration.setDistanceBeaconD(50);
-                case 1: quadriLateration.setDistanceBeaconD(150);
-                case 2: quadriLateration.setDistanceBeaconD(250);
-                case 3: quadriLateration.setDistanceBeaconD(350);
-                case 4: quadriLateration.setDistanceBeaconD(450);
-                case 5: quadriLateration.setDistanceBeaconD(550);
-                case 6: quadriLateration.setDistanceBeaconD(650);
-            }
-        }
     }
 
     /**
@@ -616,17 +354,13 @@ public class MainActivity extends ActionBarActivity {
      * Ici il y'en à aucun
      */
     private void initElements() {
-        //getSupportActionBar().setBackgroundDrawable(
-        //        new ColorDrawable(getResources().getColor(R.color.Orange)));
-        planPieceQuatre = new PlanPieceQuatre(new Point(0,0), new Point(500,477));
+        //TODO 1000 -> 500 954/477
+        planPieceQuatre = new PlanPieceQuatre(new Point(0,0), new Point(1000,954));
         planPieceQuatre.setPositionBeaconA(new Point(0, 0));
-        planPieceQuatre.setPositionBeaconB(new Point(0, 477));
-        planPieceQuatre.setPositionBeaconC(new Point(500, 0));
-        planPieceQuatre.setPositionBeaconD(new Point(500, 477));
+        planPieceQuatre.setPositionBeaconB(new Point(0, 954));
+        planPieceQuatre.setPositionBeaconC(new Point(1000, 0));
+        planPieceQuatre.setPositionBeaconD(new Point(1000, 954));
 
-        /*trilateration = new Trilateration(planPiece.getPositionBeaconXDQW()
-                                            ,planPiece.getPositionBeaconT0YZ()
-                                            ,planPiece.getPositionBeaconWMKW());*/
         quadriLateration = new QuadriLateration(planPieceQuatre.getPositionBeaconA(),planPieceQuatre.getPositionBeaconB()
                 ,planPieceQuatre.getPositionBeaconC(),planPieceQuatre.getPositionBeaconD());
         w = (TextView) findViewById(R.id.w);
@@ -636,13 +370,6 @@ public class MainActivity extends ActionBarActivity {
         coin = (TextView) findViewById(R.id.coin);
 
         listePosition = new ArrayList<>();
-        listeRegion = new HashSet<>();
-        listeRegion.add(new Region(UUID.fromString("F7826DA6-4FA2-4E98-8024-BC5B71E0893E")
-                ,13714,13269));
-        listeRegion.add(new Region(UUID.fromString("F7826DA6-4FA2-4E98-8024-BC5B71E0893E")
-                ,14641,60464));
-        listeRegion.add(new Region(UUID.fromString("F7826DA6-4FA2-4E98-8024-BC5B71E0893E")
-                ,62654,62892));
     }
 
     /**
@@ -700,29 +427,4 @@ public class MainActivity extends ActionBarActivity {
         };
     }
 
-    private double getDistance(int txPower, double rssi) {
-        double ratio = rssi * 1.0 /txPower;
-        if (ratio < 1.0) {
-            return Math.pow(ratio,10);
-        } else {
-            return ((VAR1) * Math.pow(ratio,VAR2) + 0.111)*100;
-        }
-    }
-
-    public void sendEmail() {
-        String to = "abdel@uchrony.be";
-        String subject = "Info trilateration";
-        String message = textMessage;
-        //String toCc = "email de destinataire en CC";
-        //String toCci = "email de destinataire en CCi";
-        Intent email = new Intent(Intent.ACTION_SEND);
-        email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
-        //email.putExtra(Intent.EXTRA_CC, new String[]{ toCc});
-        //email.putExtra(Intent.EXTRA_BCC, new String[]{toCci});
-        //email.putExtra(Intent.EXTRA_STREAM, "file:///sdcard/file.pdf");
-        email.putExtra(Intent.EXTRA_SUBJECT, subject);
-        email.putExtra(Intent.EXTRA_TEXT, message);
-        email.setType("message/rfc822");
-        startActivity(Intent.createChooser(email, "Choisissez un client de messagerie:"));
-    }
 }
