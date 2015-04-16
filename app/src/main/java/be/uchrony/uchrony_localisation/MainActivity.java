@@ -132,14 +132,14 @@ public class MainActivity extends ActionBarActivity {
         // affiche les Ibeacons
         Paint pointBeacon = new Paint();
         pointBeacon.setColor(Color.GREEN);
-        canvas.drawCircle( planPieceQuatre.getPositionBeaconA().x*2
-                , planPieceQuatre.getPositionBeaconA().y*2, 50, pointBeacon);
-        canvas.drawCircle( planPieceQuatre.getPositionBeaconB().x*2
-                , planPieceQuatre.getPositionBeaconB().y*2, 50, pointBeacon);
-        canvas.drawCircle( planPieceQuatre.getPositionBeaconC().x*2
-                , planPieceQuatre.getPositionBeaconC().y*2, 50, pointBeacon);
-        canvas.drawCircle( planPieceQuatre.getPositionBeaconD().x*2
-                , planPieceQuatre.getPositionBeaconD().y*2, 50, pointBeacon);
+        canvas.drawCircle( planPieceQuatre.getPositionBeaconA().x
+                , planPieceQuatre.getPositionBeaconA().y, 50, pointBeacon);
+        canvas.drawCircle( planPieceQuatre.getPositionBeaconB().x
+                , planPieceQuatre.getPositionBeaconB().y, 50, pointBeacon);
+        canvas.drawCircle( planPieceQuatre.getPositionBeaconC().x
+                , planPieceQuatre.getPositionBeaconC().y, 50, pointBeacon);
+        canvas.drawCircle( planPieceQuatre.getPositionBeaconD().x
+                , planPieceQuatre.getPositionBeaconD().y, 50, pointBeacon);
 
         // afficher les points
         if (position != null) {
